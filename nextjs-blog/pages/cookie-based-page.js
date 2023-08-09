@@ -5,23 +5,22 @@ export const config = {
     runtime: 'experimental-edge',
 };
 
-export default function Test({ id }) {
+export default function Test({ suggestedItems }) {
     return (
         <Layout>
             <Head>
                 <title>Cookie Based Page</title>
             </Head>
             <div>
-                Got this response: {id}
+                Got this top recommendation: {suggestedItems[0]}
             </div>
         </Layout>
     );
 }
 
 export async function getServerSideProps(context) {
-    // const cookieValue = context.req.cookies['cookie-data'];
-    // let response = await fetch(`http://16.170.233.168:3000/api/cookie-based-response?cookieValue=${cookieValue}`);
-    const response = await fetch('https://api.github.com/repos/vercel/next.js');
+    const cookieValue = context.req.cookies['cookie-data'];
+    let response = await fetch(`https://backend.piptrends.com/recommended-packages/${cookieValue}`);
     const data = await response.json();
     return {
         props: data,
