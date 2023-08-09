@@ -1,9 +1,9 @@
 import Layout from '../components/layout';
 import Head from 'next/head';
 
-// export const config = {
-//     runtime: 'experimental-edge',
-// };
+export const config = {
+    runtime: 'edge',
+};
 
 export default function Test({ response }) {
     return (
